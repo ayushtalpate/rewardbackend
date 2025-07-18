@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 // Create user
-app.post('/users', async (req, res) => {
+app.post('/api/users', async (req, res) => {
   try {
     const { name } = req.body;
     if (!name) return res.status(400).json({ error: 'Name is required' });
@@ -47,7 +47,7 @@ app.post('/users', async (req, res) => {
 });
 
 // Get users
-app.get('/users', async (req, res) => {
+app.get('/api/users', async (req, res) => {
   try {
     const users = await User.find();
     res.status(200).json(users);
@@ -57,7 +57,7 @@ app.get('/users', async (req, res) => {
 });
 
 // Claim points
-app.post('/claims', async (req, res) => {
+app.post('/api/claims', async (req, res) => {
   try {
     const { userId } = req.body;
     if (!userId) return res.status(400).json({ error: 'User ID is required' });
